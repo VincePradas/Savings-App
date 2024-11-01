@@ -36,6 +36,7 @@ const AddGoal = () => {
     title: "",
     category: "",
     amount: "",
+    description:"",
     creator: "",
     uniqueID: genUID(),
   });
@@ -62,6 +63,7 @@ const AddGoal = () => {
         title: "",
         category: "",
         amount: "",
+        description:"",
         creator:"",
         uniqueID: genUID(),
       });
@@ -110,9 +112,9 @@ const AddGoal = () => {
         />
         <FormField
           title="Description"
-          value={form.creator}
+          value={form.description}
           placeholder="What's this for?"
-          handleChangeText={(e) => setForm({ ...form, creator: e })}
+          handleChangeText={(e) => setForm({ ...form, description: e })}
           otherStyles="mt-7"
         />
         <CustomButton

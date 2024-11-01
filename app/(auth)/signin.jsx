@@ -97,7 +97,7 @@ const SignIn = () => {
             <Text
               className="text-[#d52bff] font-bold"
               onPress={() => {
-                router.push("/sign-up");
+                router.push("/signup");
               }}
             >
               {" "}

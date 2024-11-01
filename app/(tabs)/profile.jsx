@@ -1,3 +1,4 @@
+// Profile.jsx
 import {
   SafeAreaView,
   ScrollView,
@@ -5,18 +6,19 @@ import {
   View,
   Image,
   ActivityIndicator,
-  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { icons } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-import {router} from "expo-router"
-import { getCurrentUser, signOut } from "../../lib/appwrite"; // Adjust the path if needed
-import CustomButton from "../../components/CustomButton"
+import { router } from "expo-router";
+import { getCurrentUser } from "../../lib/appwrite"; // Adjust the path if needed
+import CustomButton from "../../components/CustomButton";
+import { useGlobalContext } from "../../context/GlobalProvider"; // Import global context
+
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigation = useNavigation();
+  const { handleLogout } = useGlobalContext(); // Access handleLogout from context
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,11 +35,11 @@ const Profile = () => {
     fetchUserData();
   }, []);
 
-  const handleLogout = async () => {
+  const onLogout = async () => {
     try {
-      await signOut(); // Call logout function from Appwrite
+      await handleLogout(); // Call global logout function
       setUserData(null); // Clear user data
-      navigation.navigate("index"); // Navigate to the login or home screen after logout
+      router.push("/signin"); // Navigate to the login screen
       alert("Logged out successfully!");
     } catch (error) {
       console.error("Failed to logout:", error);
@@ -46,7 +48,7 @@ const Profile = () => {
 
   const handleContinueWithEmail = (event) => {
     event.preventDefault();
-    router.push("/sign-in"); // Navigate to the sign-in or sign-up screen
+    router.push("/signin"); // Navigate to the sign-in screen
   };
 
   if (loading) {
@@ -83,10 +85,7 @@ const Profile = () => {
               </Text>
             </View>
             <View className="mt-6">
-              <CustomButton
-              title="Logout"
-              handlePress={handleLogout}
-              />
+              <CustomButton title="Logout" handlePress={onLogout} />
             </View>
             {/* About Section */}
             <View className="pt-8 px-2">
@@ -145,15 +144,12 @@ const Profile = () => {
           </View>
         ) : (
           <View className="text-white text-center mt-4">
-            <CustomButton
-              title="Sign in here"
-              handlePress={handleContinueWithEmail}
-              />
-              <View>
-                <Text className="text-white text-center py-10">
-                  Restart the app after logging out.
-                </Text>
-              </View>
+            <CustomButton title="Sign in here" handlePress={handleContinueWithEmail} />
+            <View>
+              <Text className="text-white text-center py-10">
+                Restart the app after logging out.
+              </Text>
+            </View>
           </View>
         )}
       </ScrollView>

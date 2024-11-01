@@ -2,7 +2,7 @@ import { Text, View, ScrollView, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { signInWithGoogle } from "../"
 import { images } from "../constants";
 import { icons } from "../constants";
 import CustomButton from "../components/CustomButton";
@@ -24,7 +24,7 @@ export default function Index() {
           <Image
             source={images.textLogo}
             className="w-[220] h-[120]"
-            resizeMode="contain"
+            resizeMode="contain"gi
           />
           <Image
             source={images.cards}
@@ -34,7 +34,8 @@ export default function Index() {
           <View>
             <Text className="text-white font-bold text-center text-2xl">
               Set and Track your financial goal with{" "}
-              <Text className="text-[#d52bff]">Sav</Text><Text>ince</Text>
+              <Text className="text-[#d52bff]">Sav</Text>
+              <Text>ince</Text>
             </Text>
           </View>
 
@@ -45,7 +46,7 @@ export default function Index() {
           <CustomButton
             title="Continue with Email"
             handlePress={() => {
-              router.push("/sign-up");
+              router.push("/signup");
             }}
             containerStyles="mt-7"
           />
@@ -71,7 +72,7 @@ export default function Index() {
             <Text
               className="text-[#d52bff] font-bold"
               onPress={() => {
-                router.push("/sign-in");
+                router.push("/signin");
               }}
             >
               {" "}
@@ -81,9 +82,7 @@ export default function Index() {
         </View>
         <StatusBar backgroundColor="transparent" style="light" />
       </ScrollView>
-      <StatusBar
-      backgroundColor="transparent" style="light"
-      />
+      <StatusBar backgroundColor="transparent" style="light" />
     </SafeAreaView>
   );
 }

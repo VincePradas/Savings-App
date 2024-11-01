@@ -1,6 +1,6 @@
+// GlobalProvider.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-import { getCurrentUser } from "../lib/appwrite";
+import { getCurrentUser, signOut } from "../lib/appwrite";
 
 const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
@@ -10,18 +10,38 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      setIsLogged(false);
+      setUser(null);
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   useEffect(() => {
-    getCurrentUser()
-      .then((res) => {
-        (res) ? (setIsLogged(true),setUser(res)) : (setIsLogged(false),setUser(null))
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
+    const initializeUser = async () => {
+      setLoading(true);
+      try {
+        const currentUser = await getCurrentUser();
+        if (currentUser) {
+          setIsLogged(true);
+          setUser(currentUser);
+        } else {
+          setIsLogged(false);
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+        setIsLogged(false);
+        setUser(null);
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+    initializeUser();
+  }, []); // Runs only once on mount
 
   return (
     <GlobalContext.Provider
@@ -31,6 +51,8 @@ const GlobalProvider = ({ children }) => {
         user,
         setUser,
         loading,
+        setLoading,
+        handleLogout, // Expose logout function
       }}
     >
       {children}
