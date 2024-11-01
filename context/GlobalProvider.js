@@ -1,4 +1,4 @@
-// GlobalProvider.js
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getCurrentUser, signOut } from "../lib/appwrite";
 
@@ -41,7 +41,7 @@ const GlobalProvider = ({ children }) => {
       }
     };
     initializeUser();
-  }, []); // Runs only once on mount
+  }, []); 
 
   return (
     <GlobalContext.Provider
@@ -52,7 +52,7 @@ const GlobalProvider = ({ children }) => {
         setUser,
         loading,
         setLoading,
-        handleLogout, // Expose logout function
+        handleLogout, 
       }}
     >
       {children}

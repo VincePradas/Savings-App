@@ -50,8 +50,8 @@ const AddGoal = () => {
     try {
       await createGoal({
         ...form,
-        userId: user.$id, // Include user ID
-        category: form.category, // Pass category here
+        userId: user.$id, 
+        category: form.category, 
       });
   
       Alert.alert("Success", "Goal created successfully");

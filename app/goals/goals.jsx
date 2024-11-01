@@ -12,7 +12,7 @@ const Goals = ({ loading }) => {
   const [goals, setGoals] = useState([]);
   const [isLoading, setIsLoading] = useState(loading);
   const [progressInputs, setProgressInputs] = useState({});
-  const [loadingStates, setLoadingStates] = useState({}); // Corrected: Local loading state for each button
+  const [loadingStates, setLoadingStates] = useState({}); 
   const [previousGoals, setPreviousGoals] = useState([]);
 
   const client = new Client()
@@ -91,45 +91,45 @@ const Goals = ({ loading }) => {
     const amount = parseInt(progressInputs[goalId], 10);
     if (!isNaN(amount) && amount > 0) {
       try {
-        setLoadingStates((prev) => ({ ...prev, [goalId]: true })); // Set loading for the specific goal
+        setLoadingStates((prev) => ({ ...prev, [goalId]: true })); 
         const currentUser = await getCurrentUser();
   
-        // Fetch existing progress for the goal
+        
         const existingProgress = await fetchProgressByGoalId(currentUser.$id, goalId);
-        const updatedProgress = existingProgress + amount; // Update the existing progress with new amount
+        const updatedProgress = existingProgress + amount; 
   
-        // Update the progress in the database
+        
         await createOrUpdateProgress(currentUser.$id, goalId, updatedProgress);
   
-        // Check if the goal is completed
+        
         const goal = goals.find(g => g.$id === goalId);
         if (updatedProgress >= goal.amount) {
-          // Prepare the data to be stored in the previousGoals collection
+          
           const previousGoalData = {
             title: goal.title,
             amount: goal.amount,
             category: goal.category,
-            accountId: currentUser.$id, // Associate with the current user
+            accountId: currentUser.$id, 
           };
   
-          // Transfer the goal to previous goals
+          
           await databases.createDocument(
             appwriteConfig.databaseId,
-            '671f400d00238a14bd8e', // Your previousGoals collection ID
-            goalId, // Use the goal ID or generate a new one
+            '671f400d00238a14bd8e', 
+            goalId, 
             previousGoalData
           );
   
-          // Remove the goal from current goals
+          
           await databases.deleteDocument(
             appwriteConfig.databaseId,
             appwriteConfig.goalsCollectionId,
             goalId
           );
   
-          setGoals((prevGoals) => prevGoals.filter(g => g.$id !== goalId)); // Update the state for active goals
+          setGoals((prevGoals) => prevGoals.filter(g => g.$id !== goalId)); 
         } else {
-          // Update the state for active goals
+          
           setGoals((prevGoals) =>
             prevGoals.map((goal) =>
               goal.$id === goalId ? { ...goal, progress: updatedProgress } : goal
@@ -137,7 +137,7 @@ const Goals = ({ loading }) => {
           );
         }
   
-        // Clear the input field for the goal
+        
         setProgressInputs((prevInputs) => ({
           ...prevInputs,
           [goalId]: "",
@@ -145,7 +145,7 @@ const Goals = ({ loading }) => {
       } catch (error) {
         console.error("Failed to add progress:", error);
       } finally {
-        setLoadingStates((prev) => ({ ...prev, [goalId]: false })); // Reset loading for the specific goal
+        setLoadingStates((prev) => ({ ...prev, [goalId]: false })); 
       }
     }
   };
@@ -167,7 +167,7 @@ const ProgressBar = ({ progress, max }) => {
 const renderGoalItem = ({ item }) => {
     const currIcon = item.category.toLowerCase();
     const progress = item.progress || 0;
-    const isButtonLoading = loadingStates[item.$id]; // Check if the specific button is loading
+    const isButtonLoading = loadingStates[item.$id]; 
 
     return (
       <View className="p-4 border border-white rounded-lg shadow mb-2">
@@ -199,10 +199,10 @@ const renderGoalItem = ({ item }) => {
             keyboardType="numeric"
           />
           <CustomButton
-            title={isButtonLoading ? "Wait..." : "Add"} // Change button text while loading
+            title={isButtonLoading ? "Wait..." : "Add"} 
             handlePress={() => addProgress(item.$id)}
             containerStyles="mt-2"
-            disabled={isButtonLoading} // Disable button while loading
+            disabled={isButtonLoading} 
           />
         </View>
       </View>

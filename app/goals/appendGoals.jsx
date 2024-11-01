@@ -12,7 +12,6 @@
     useEffect(() => {
       const fetchData = async () => {
         setIsLoading(true);
-        // Replace with actual fetching logic
         const fetchedGoals = [
           { id: '1', name: 'Goal 1', progress: 0 },
           { id: '2', name: 'Goal 2', progress: 80 },

@@ -1,4 +1,4 @@
-// Profile.jsx
+
 import {
   SafeAreaView,
   ScrollView,
@@ -11,14 +11,14 @@ import React, { useEffect, useState } from "react";
 import { icons } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
-import { getCurrentUser } from "../../lib/appwrite"; // Adjust the path if needed
+import { getCurrentUser } from "../../lib/appwrite"; 
 import CustomButton from "../../components/CustomButton";
-import { useGlobalContext } from "../../context/GlobalProvider"; // Import global context
+import { useGlobalContext } from "../../context/GlobalProvider"; 
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { handleLogout } = useGlobalContext(); // Access handleLogout from context
+  const { handleLogout } = useGlobalContext(); 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -37,9 +37,9 @@ const Profile = () => {
 
   const onLogout = async () => {
     try {
-      await handleLogout(); // Call global logout function
-      setUserData(null); // Clear user data
-      router.push("/signin"); // Navigate to the login screen
+      await handleLogout(); 
+      setUserData(null); 
+      router.push("/signin"); 
       alert("Logged out successfully!");
     } catch (error) {
       console.error("Failed to logout:", error);
@@ -48,7 +48,7 @@ const Profile = () => {
 
   const handleContinueWithEmail = (event) => {
     event.preventDefault();
-    router.push("/signin"); // Navigate to the sign-in screen
+    router.push("/signin"); 
   };
 
   if (loading) {

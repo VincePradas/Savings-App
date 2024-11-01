@@ -1,4 +1,4 @@
-// AuthLayout.jsx
+
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Loader } from "../../components";
@@ -10,13 +10,13 @@ const AuthLayout = () => {
   const { loading, isLogged } = useGlobalContext();
 
   useEffect(() => {
-    // If the user is logged in, redirect to the home page
+    
     if (isLogged) {
-      router.replace("/home"); // Use router to replace the current route
+      router.replace("/home"); 
     }
   }, [isLogged]);
 
-  // Show loader while loading
+  
   if (loading) {
     return <Loader isLoading={loading} />;
   }

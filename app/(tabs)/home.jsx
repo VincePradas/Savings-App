@@ -5,7 +5,7 @@
   import { images } from "../../constants";
   import { Account, Client } from "react-native-appwrite";
   import { appwriteConfig } from "../../lib/appwrite";
-  import Goals from "../goals/goals"; // Import the updated Goals component
+  import Goals from "../goals/goals"; 
   import AppendGoals from "../goals/appendGoals"
   const Home = () => {
     const [username, setUsername] = useState("");
@@ -24,12 +24,12 @@
       } catch (error) {
         console.error("Failed to fetch account:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching account data
+        setLoading(false); 
       }
     };
 
     useEffect(() => {
-      fetchAccount(); // Fetch account when the component mounts
+      fetchAccount(); 
     }, []);
 
     return (
