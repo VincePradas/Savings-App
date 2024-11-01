@@ -1,1 +1,1 @@
-# APK DOWNLOAD LINK: apkpure.com/p/com.savings.manager
+# APK DOWNLOAD LINK: https://apkpure.com/p/com.savings.manager
