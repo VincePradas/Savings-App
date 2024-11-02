@@ -32,7 +32,8 @@
             className={`flex-1 py-0 items-center ${activeTab === "goals" ? "" : "bg-transparent"}`}
             onPress={() => setActiveTab("goals")}
           >
-            <Text className={`text-[#ffffff51] font-pregular ${activeTab === "goals" ? "text-[#29e120a0] font-pbold" : ""}`}>
+            {/* [#29e120a0] */}
+            <Text className={`text-[#ffffff51] font-pregular ${activeTab === "goals" ? "text-red-500 font-pbold" : ""}`}>
               Active
             </Text>
           </TouchableOpacity>
@@ -42,7 +43,8 @@
             onPress={() => setActiveTab("history")}
           >
             <View className="flex flex-row gap-2 justify-center items-center">
-              <Text className={`text-[#ffffff51] font-pregular ${activeTab === "history" ? "text-[#ffdd00b7] font-pbold" : ""}`}>
+              {/* [#ffdd00b7] */}
+              <Text className={`text-[#ffffff51] font-pregular ${activeTab === "history" ? "text-secondary-100 font-pbold" : ""}`}>
                 Completed
               </Text>
             </View>

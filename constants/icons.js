@@ -22,6 +22,7 @@ import travel from "../assets/icons/travel.png"
 import foods from "../assets/icons/foods.png"
 import shopping from "../assets/icons/shopping.png"
 import info from "../assets/icons/info.png"
+import accesories from ".././assets/icons/jewelry.png"
 
 export default {
   play,
@@ -47,5 +48,6 @@ export default {
   travel,
   foods,
   shopping,
-  info
+  info,
+  accesories
 };

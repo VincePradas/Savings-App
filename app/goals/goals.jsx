@@ -156,7 +156,7 @@ const ProgressBar = ({ progress, max }) => {
     const progressRatio = progress / max;
     return (
       <View className="w-full py-2">
-        <Progress.Bar progress={progressRatio} width={null} color="green" />
+        <Progress.Bar progress={progressRatio} width={null} color="red" />
         <Text className="text-center text-white mt-1">
           {`${Math.round(progressRatio * 100)}%`}
         </Text>

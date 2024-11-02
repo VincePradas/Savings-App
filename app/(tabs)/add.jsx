@@ -21,7 +21,8 @@ const categories = [
   { id: 3, name: "Money", icon: icons.money },
   { id: 4, name: "Travel", icon: icons.travel },
   { id: 5, name: "Foods", icon: icons.foods },
-  { id: 6, name: "Shopping", icon: icons.shopping }
+  { id: 6, name: "Shopping", icon: icons.shopping },
+  { id: 7, name: "Accesories", icon: icons.accesories }
 
 ];
 

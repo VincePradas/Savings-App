@@ -2,7 +2,6 @@ import { Text, View, ScrollView, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { signInWithGoogle } from "../"
 import { images } from "../constants";
 import { icons } from "../constants";
 import CustomButton from "../components/CustomButton";
